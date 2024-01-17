@@ -13,15 +13,17 @@ class FileStorage:
         class_dict = {}
         if cls:
             for key, value in self.__objects.items():
-                if key.startswith(cls.__name__):
+                if key.startswith(cls.__name__ + "."):
                     class_dict[key] = value
-                    return class_dict
+            return class_dict
         else:
             return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        # self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        self.__objects[key] = obj
 
     def save(self):
         """Saves storage dictionary to file"""
