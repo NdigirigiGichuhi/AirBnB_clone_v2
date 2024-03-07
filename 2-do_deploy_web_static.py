@@ -12,7 +12,7 @@ env.key_filename = '~/.ssh/school'
 
 def do_deploy(archive_path):
     """
-    Deploy web files to the server
+    Deploying the  web files to the server
     """
     try:
         if not path.exists(archive_path):
