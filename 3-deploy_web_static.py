@@ -9,12 +9,12 @@ from datetime import datetime
 
 
 # Set the host IP addresses for web-01 && web-02
-env.hosts = ['34.234.203.177', '52.72.75.78']
+env.hosts = ['18.215.160.180', '3.95.32.201']
 env.user = "ubuntu"
 
 
 def do_pack():
-    """Create a tar gzipped archive of the directory web_static."""
+    """Create a tar gzipped archive of the directory web_static (edited)."""
     dt = datetime.utcnow()
     file = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                          dt.month,
