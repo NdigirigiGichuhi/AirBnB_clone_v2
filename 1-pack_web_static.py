@@ -5,6 +5,7 @@ from time import strftime
 from datetime import date
 import os
 
+
 def do_pack():
     """ A script that generates archive the contents of web_static folder"""
     file_name = strftime("%Y%m%d%H%M%S")
