@@ -15,7 +15,8 @@ def do_pack():
 
         file_name = strftime("%Y%m%d%H%M%S")
 
-        local(f"sudo tar -czvf versions/web_static_{file_name}.tgz web_static/")
+        local(f"sudo tar -czvf versions/web_static_{file_name}.tgz \
+                web_static/")
         file_path = f"versions/web_static_{file_name}.tgz"
         file_size = os.path.getsize(file_path)
         print(f"web_static packed: {file_path}.tgz -> {file_size}Bytes")
