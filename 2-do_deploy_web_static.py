@@ -9,6 +9,25 @@ env.user = 'ubuntu'
 env.key_filename = '~/.ssh/school'
 
 
+def do_pack():
+    """Create a tar gzipped archive of the web_static directory"""
+    # Obtaining current date and time
+    now = datetime.now().strftime("%Y%m%d%H%M%S")
+    # Construct path where the archive is saved
+    archive_path = "versions/web_static_{}.tgz".format(now)
+
+    # Create a directory if it does not exist using fabric
+    local("mkdir -p versions")
+
+    # Use tar command to create and compress archive
+    archived = local("tar -cvzf {} web_static".format(archive_path))
+
+    # Checking archive status
+    if archived.return_code != 0:
+        return None
+    else:
+        return archive_path
+
 def do_deploy(archive_path):
     """ Distributes an archive to each web server
 
@@ -18,16 +37,17 @@ def do_deploy(archive_path):
         If file doesn't exist at path - False
         Otherwise - True
     """
+    # Checking for valid path
     if not path.exists(archive_path):
         return False
 
     try:
+        file_name = archive_path.split('/')[1]
+        release_folder = '/data/web_static/releases/{}'.format(
+                file_name.split('.')[0])
+
         put(archive_path, '/tmp')
 
-        # Uncompress archive to the folder
-        file_name = archive_path.split('/')[-1]
-        release_folder = '/data/web_static/releases/{}'.format(
-            file_name.split('.')[0])
         run('mkdir -p {}'.format(release_folder))
         run('tar -xzf /tmp/{} -C {}'.format(file_name, release_folder))
 
