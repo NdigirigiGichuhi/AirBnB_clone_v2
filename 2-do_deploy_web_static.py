@@ -25,7 +25,7 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp')
 
         # Uncompress archive to the folder
-        archive_filename = path.basename(archive_path)
+        archive_filename = archive_path.split('/')[-1]
         release_folder = '/data/web_static/releases/{}'.format(
             archive_filename.split('.')[0])
         run('mkdir -p {}'.format(release_folder))
