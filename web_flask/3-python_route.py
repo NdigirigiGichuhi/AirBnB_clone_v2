@@ -30,7 +30,7 @@ def show_c_text(text):
     return 'C {}'.format(text)
 
 
-@app.route('/pthon/', strict_slashes=False)
+@app.route('/pthon/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def display(text):
     """display "Python ", followed by the valie of the text """
