@@ -35,7 +35,7 @@ def show_c_text(text):
 def display(text):
     """display "Python ", followed by the valie of the text """
     text = text.replace("-", "")
-    return "Python {}".format(text.replace("-", ""))
+    return "Python {}".format(text)
 
 
 if __name__ == '__main__':
