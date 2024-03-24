@@ -7,13 +7,14 @@ from sqlalchemy.orm import relationship
 import models
 from models.city import City
 
+
 class State(BaseModel, Base):
     """ State class """
-    name = ""
     __tablename__ = "states"
+
     name = Column(String(128), nullable=False)
-    cities = relationship("City", cascade="all, delete, delete_orphan"),
-                            backref="state"
+    cities = relationship("City", cascade="all, delete,\
+            delete-orphan", backref="state")
 
     @property
     def cities(self):
@@ -22,11 +23,11 @@ class State(BaseModel, Base):
         equals to the current State.id
         """
         from models import storage
-        
+
         city_list = []
         cities = storage.all(City)
 
-        for city in cities.value():
+        for city in cities.values():
             if city.state_id == self.id:
                 city_list.append(city)
         return city_list
