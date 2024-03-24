@@ -34,7 +34,7 @@ def show_c_text(text):
 @app.route('/python/<text>', strict_slashes=False)
 def display(text):
     """display "Python ", followed by the valie of the text """
-    text = text.replace("-", "")
+    text = text.replace('-', ' ')
     return "Python {}".format(text)
 
 
