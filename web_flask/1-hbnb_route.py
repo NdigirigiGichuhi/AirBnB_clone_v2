@@ -4,6 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
@@ -11,6 +12,7 @@ def hello_hbnb():
     the URL works both with or without the slash (/)
     """
     return 'Hello HBNB!'
+
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
