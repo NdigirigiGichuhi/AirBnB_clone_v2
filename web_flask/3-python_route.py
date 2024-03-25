@@ -18,7 +18,8 @@ def hbnb():
     return "HBNB"
 
 
-@app.route("/python/<text>")
+@app.route("/python/")
+@app.route("/python/<text>", strict_slashes=False)
 def my_text(text='is cool'):
     """Return C followed by value of text"""
 
