@@ -13,12 +13,10 @@ from models.place import Place
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     __tablename__ = "cities"
-
     state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
     name = Column(String(128), nullable=False)
-
     places = relationship("Place", backref="cities")
 
     def __init__(self, *args, **kwargs):
         """Initializes city"""
-        supper().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
