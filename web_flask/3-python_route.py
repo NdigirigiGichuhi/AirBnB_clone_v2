@@ -27,7 +27,7 @@ def my_text(text='is cool'):
         text = text.split("_")
         text = ",".join(text)
         text = text.replace(",", " ")
-    return f"C {text}"
+    return f"Python {text}"
 
 
 if __name__ == "__main__":
