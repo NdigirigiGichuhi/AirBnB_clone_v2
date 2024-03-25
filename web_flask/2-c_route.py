@@ -21,6 +21,10 @@ def hbnb():
 @app.route("/c/<text>")
 def my_text(text):
     """Return C followed by value of text"""
+    if "_" in text:
+        text = text.split("_")
+        text = ",".join(text)
+        text = text.replace(",", " ")
     return f"C {text}"
 
 
