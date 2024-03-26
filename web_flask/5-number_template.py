@@ -40,7 +40,7 @@ def number(n):
 def template(n):
     """Display a HTML page only if n is an integer"""
     if isinstance(int, n):
-        return render_template('5-number.htlm', n=n)
+        return render_template('5-number.htlm', num=n)
 
 
 if __name__ == "__main__":
