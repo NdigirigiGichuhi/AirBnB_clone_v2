@@ -3,6 +3,7 @@
 
 from flask import Flask
 from flask import render_template
+
 app = Flask(__name__)
 
 
@@ -37,10 +38,9 @@ def number(n):
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
-def template(n):
+def template(n=None):
     """Display a HTML page only if n is an integer"""
-    if isinstance(int, n):
-        return render_template('5-number.htlm', num=n)
+    return render_template('5-number.htlm', num=n)
 
 
 if __name__ == "__main__":
