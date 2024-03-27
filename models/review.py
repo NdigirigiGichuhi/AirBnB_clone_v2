@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 import models
+from os import getenv
 
 storage_type = getenv("HBNB_TYPE_STORAGE")
 
