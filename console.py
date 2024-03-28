@@ -17,14 +17,15 @@ class HBNBCommand(cmd.Cmd):
     """Defines the HolbertonBnB command interpreter."""
 
     prompt = "(hbnb) "
+
     __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Amenity",
-        "Place",
-        "Review"
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
     }
 
     def emptyline(self):
@@ -39,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF signal to exit the program."""
         print("")
         return True
-
+    '''
     def do_create(self, line):
         """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2> ...
         Create a new class instance with given keys/values and print its id.
@@ -73,6 +74,44 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         except NameError:
             print("** class doesn't exist **")
+    '''
+
+    def do_create(self, args):
+        ''' Create an object of any class'''
+        arguments = args.split()
+        if not args:
+            print("** class name missing **")
+            return
+
+        class_name = arguments[0]
+
+        if class_name not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+
+        new_instance = HBNBCommand.classes[class_name]()
+
+        parameters = arguments[1:]
+
+        command_parameters = {}
+
+        for parameter in parameters:
+            key, value = parameter.split('=')
+
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1].replace('\"', '"').replace('', ' ')
+            elif '.' in value:
+                value = float(value)
+            else:
+                value = int(value)
+
+            command_parameters[key] = value
+
+        for key, value in command_parameters.items():
+            setattr(new_instance, key, value)
+
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, line):
         """Prints the string representation of an instance
